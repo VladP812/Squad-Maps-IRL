@@ -1,5 +1,5 @@
 mapboxgl.accessToken =
-    'pk.eyJ1IjoiZWdlcnR1IiwiYSI6ImNqd3gzbDBkMTBxNHQ0M216aDhnN2htbDkifQ.VQnmmTRVTleFGdK7aDXczg';
+   'please_add_valid_token_here';
 
 var startCoordinate = [-18.167310, 50.450492],
     startZoom = 2;
@@ -12,10 +12,11 @@ var map = new mapboxgl.Map({
     minZoom: 1.5,
     zoom: startZoom,
     center: startCoordinate,
-    style: 'mapbox://styles/egertu/ckf7bv0oj1bvh19myamuyin3i?fresh=true',
+    style: 'mapbox://styles/egertu/ckf7bv0oj1bvh19myamuyin3i?fresh=true'
 });
 
 var images = {
+    'Sanxian Islands': 'Sanxian_minimap.png',
     'Gorodok': 'Alpha_v9_Gorodok_Map.jpg',
     'Yehorivka': 'Alpha_v9_Yehorivka_Map.jpg',
     'Belaya': 'Belaya_HighRes.jpg',
@@ -44,12 +45,12 @@ data.features.forEach(feature => {
         "<img src=img/" + images[feature.properties.name] + " width=\"500\" height=\"500\">";
 });
 
-map.on('load', function () {
+map.on('load', function() {
 
     map.loadImage(
         'empty_marker.png',
         // Add an image to use as a custom marker
-        function (error, image) {
+        function(error, image) {
             if (error) throw error;
             map.addImage('custom-marker', image);
             LoadMapbox();
@@ -59,7 +60,7 @@ map.on('load', function () {
 
 var popup;
 
-var LoadMapbox = function () {
+var LoadMapbox = function() {
     map.addSource('popups', {
         'type': 'geojson',
         'data': {
@@ -88,12 +89,12 @@ var LoadMapbox = function () {
         className: "popup"
     });
 
-    map.on('click', 'popups', function (e) {
+    map.on('click', 'popups', function(e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         flyTo(coordinates);
     });
 
-    createHook(popup, '_update', function () {
+    createHook(popup, '_update', function() {
         if (popup != null) {
             if (popup._container != null) {
                 popup._container.style.originalTransform = popup._container.style.transform;
@@ -201,8 +202,8 @@ data.features.forEach(feature => {
     })
 
     newContent.classList.add("content", "subcontent");
-    if(name == "Mutaha" || name == "Harju"){
-        name +="*";
+    if (name == "Mutaha" || name == "Harju") {
+        name += "*";
     }
     // newContent.innerText = name;
 
@@ -216,7 +217,7 @@ data.features.forEach(feature => {
 
     let newContentLink = document.createElement("span");
     newContentLink.innerHTML = "<button style=\"padding-left: 20px; display: inline-block\" class=\"iconify\" data-icon=\"subway-cain\" data-inline=\"false\"></button>";
-    newContentLink.addEventListener("click", ()=>{
+    newContentLink.addEventListener("click", () => {
         window.open(feature.url);
     })
     newContent.appendChild(newContentLink);
@@ -226,7 +227,7 @@ data.features.forEach(feature => {
 
 var coll = document.getElementsByClassName("collapsible-link");
 for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
+    coll[i].addEventListener("click", function() {
         var content = this.parentNode.querySelectorAll(":scope > .content");
         this.classList.toggle("active");
         for (let i = 0; i < content.length; i++) {
@@ -241,7 +242,7 @@ for (let i = 0; i < coll.length; i++) {
     });
 }
 
-var flyTo = function (coordinates, zoom) {
+var flyTo = function(coordinates, zoom) {
     map.flyTo({
         center: coordinates,
         zoom: zoom || 12,
@@ -250,7 +251,7 @@ var flyTo = function (coordinates, zoom) {
         speed: 0.5,
         curve: 3,
 
-        easing: function (t) {
+        easing: function(t) {
             return t;
         },
 
@@ -262,7 +263,7 @@ var hoverImageToggle = document.getElementById("hoverImageToggle");
 var isHoverImage = hoverImageToggle.checked;
 updateHoverImagePopup();
 
-hoverImageToggle.addEventListener("change", function (e) {
+hoverImageToggle.addEventListener("change", function(e) {
     isHoverImage = hoverImageToggle.checked;
     updateHoverImagePopup();
 })
@@ -278,7 +279,7 @@ function updateHoverImagePopup() {
     }
 }
 
-var isInViewport = function (element) {
+var isInViewport = function(element) {
     if (element == null) {
         return null;
     }
@@ -291,7 +292,7 @@ var isInViewport = function (element) {
     );
 }
 
-var popupViewportAlign = function () {
+var popupViewportAlign = function() {
     if (popup != null) {
         if (popup._container != null) {
             var content = popup._container;
@@ -313,7 +314,7 @@ var popupViewportAlign = function () {
 
 function createHook(obj, targetFunction, hookFunction) {
     let temp = obj[targetFunction]
-    obj[targetFunction] = function (...args) {
+    obj[targetFunction] = function(...args) {
         let ret = temp.apply(this, args)
         if (ret && typeof ret.then === 'function') {
             return ret.then((value) => {

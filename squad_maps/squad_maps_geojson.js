@@ -252,5 +252,34 @@ var data = {
         },
         "id": "6a8127f5-62ac-4de7-8256-551c270f9832",
         "url": "https://squad.gamepedia.com/Nanisivik"
+    }, {
+        "type": "Feature",
+        "properties": {
+            "shape": "Marker",
+            "name": "Sanxian Islands",
+            "category": "Eastern Asia",
+            "note": "Official"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [119.580361, 23.576431]
+        },
+        "id": "a4a3c407-653c-4db5-a666-4c3c6de40fe6",
+        "url": "https://squad.fandom.com/wiki/Sanxian_Islands"
+    }, {
+        "type": "Feature",
+        "properties": {
+            "shape": "Marker",
+            "name": "Gorodok",
+            "category": "Eastern Europe",
+            "note": "Official"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [32.624848, 54.869247]
+        },
+        "id": "0ce88c5f-923e-4510-bed2-e08372335d88",
+        "url": "https://squad.fandom.com/wiki/Gorodok"
     }]
 }
+
